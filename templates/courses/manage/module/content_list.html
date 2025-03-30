@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load course %}
+{% load static course %}
 {% block title %}
     Module {{ module.order|add:1 }}: {{ module.title }}
 {% endblock title %}
@@ -8,7 +8,7 @@
         <h1>Course "{{ course.title }}"</h1>
         <div class="contents">
             <h3>Modules</h3>
-            <ul class="modules">
+            <ul id="modules">
                 {% for m in course.modules.all %}
                     <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
                         <a href="{% url "courses:module_content_list" m.id %}">
@@ -30,7 +30,7 @@
             </p>
             <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
             <h3>Module contents:</h3>
-            <div id="module-contents">
+            <div id="moduleContents">
                 {% for content in module.contents.all %}
                     <div data-id="{{ content.id }}">
                         {% with item=content.item %}
@@ -71,4 +71,10 @@
             </ul>
         </div>
     {% endwith %}
+    <input type="hidden" id="moduleOrderUrlInput" value="{% url "courses:module_order" %}">
+    <input type="hidden" id="contentOrderUrlInput" value="{% url "courses:content_order" %}">
 {% endblock content %}
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.14.0/html5sortable.min.js"></script>
+<script src="{% static "js/content_list.js" %}"></script>
+{% endblock js %}

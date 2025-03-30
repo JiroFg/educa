@@ -209,7 +209,7 @@ class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
         for id, order in self.request_json.items():
             Content.objects.filter(
                 id=id,
-                module__owner=request.user
+                module__course__owner=request.user
             ).update(
                 order=order
             )
