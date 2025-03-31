@@ -19,11 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
+from courses.views import CourseListView
 
 urlpatterns = [
+    path('', CourseListView.as_view(), name='course_list'),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('courses/', include('courses.urls')),
+    path('students/', include('students.urls')),
     path('admin/', admin.site.urls),
 ]
 
