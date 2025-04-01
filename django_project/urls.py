@@ -29,6 +29,7 @@ urlpatterns = [
     path('students/', include('students.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('courses.api.urls')),
+    path('chat/', include('chat.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]
 

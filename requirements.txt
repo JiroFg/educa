@@ -7,3 +7,6 @@ django-debug-toolbar==5.1.0
 redis==5.2.1
 django-redisboard==8.4.0
 djangorestframework==3.16.0
+requests==2.32.3
+channels[daphne]==4.1.0
+channels-redis==4.2.1
