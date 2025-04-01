@@ -44,9 +44,15 @@ INSTALLED_APPS = [
     'students.apps.StudentsConfig',
     # third party apps
     'embed_video',
+    'debug_toolbar',
+    'redisboard',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
+    # third party middlewares
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # default middlewares
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -136,9 +142,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = reverse_lazy('students:student_course_list')
 
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
+
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
     }
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost'
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }

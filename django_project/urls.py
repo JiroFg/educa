@@ -28,6 +28,8 @@ urlpatterns = [
     path('courses/', include('courses.urls')),
     path('students/', include('students.urls')),
     path('admin/', admin.site.urls),
+    path('api/', include('courses.api.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 if settings.DEBUG:
