@@ -1,5 +1,7 @@
+asgiref==3.8.1
 django==5.1.7
 pillow==11.1.0
+sqlparse==0.5.0
 django-braces==1.17.0
 django-embed-video==1.4.10
 pymemcache==4.0.0
@@ -10,3 +12,6 @@ djangorestframework==3.16.0
 requests==2.32.3
 channels[daphne]==4.1.0
 channels-redis==4.2.1
+psycopg==3.1.18
+uwsgi==2.0.25.1
+environs==14.1.1
