@@ -58,12 +58,15 @@ class StudentCourseDetailView(LoginRequiredMixin, DetailView):
         return qs.filter(students__in=[self.request.user])
     
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        course = self.get_object()
-        if 'module_id' in self.kwargs:
-            context['module'] = course.modules.get(
-                id=self.kwargs['module_id']
-            )
-        else:
-            context['module'] = course.modules.all()[0]
+        try:
+            context = super().get_context_data(*args, **kwargs)
+            course = self.get_object()
+            if 'module_id' in self.kwargs:
+                context['module'] = course.modules.get(
+                    id=self.kwargs['module_id']
+                )
+            else:
+                context['module'] = course.modules.all()
+        except Exception as e:
+            print("ERROR:", e)
         return context

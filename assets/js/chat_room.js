@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hour12: true
     };
     // const courseId = document.getElementById("courseIdInput").value;
-    const url = `ws://${window.location.host}/ws/chat/room/${courseId}/`;
+    const url = `wss://${window.location.host}/ws/chat/room/${courseId}/`;
     const chatSocket = new WebSocket(url);
     chatSocket.onmessage = function (event) {
         const data = JSON.parse(event.data);
